@@ -22,6 +22,10 @@ o	Further validation against official price indices or larger datasets would be 
 
 Cleaning Summary:
 Data Validation: The dataset was checked for missing values, erroneous data, and extra characters. No issues were found.
+
 Date Format Fixed: The date column was converted from a string format to a datetime format for consistency.
+
 No Duplicate Rows: An inspection revealed that there were no duplicate rows in the original dataset.
+
 Data Integrity: All columns are correctly formatted and consistent, and no further cleaning was necessary.
+
