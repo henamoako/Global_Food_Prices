@@ -20,3 +20,8 @@ o	The dataset appears to correctly capture food prices in different markets with
 o	However, with only 20 records, it may not fully represent the global food price landscape.
 o	Further validation against official price indices or larger datasets would be needed to confirm accuracy.
 
+Cleaning Summary:
+Data Validation: The dataset was checked for missing values, erroneous data, and extra characters. No issues were found.
+Date Format Fixed: The date column was converted from a string format to a datetime format for consistency.
+No Duplicate Rows: An inspection revealed that there were no duplicate rows in the original dataset.
+Data Integrity: All columns are correctly formatted and consistent, and no further cleaning was necessary.
