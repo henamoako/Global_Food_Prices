@@ -29,3 +29,29 @@ No Duplicate Rows: An inspection revealed that there were no duplicate rows in t
 
 Data Integrity: All columns are correctly formatted and consistent, and no further cleaning was necessary.
 
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("https://github.com/user-attachments/files/18936323/global_food_prices_extended.csv")
+df.head()
+
+
+df['date'] = pd.to_datetime(data['date'], errors='coerce')
+
+
+plt.figure(figsize=(8, 5))
+sns.histplot(data['price'], bins=6, kde=True, color='blue')
+
+
+plt.title('Distribution of Food Prices', fontsize=14)
+plt.xlabel('Price', fontsize=12)
+plt.ylabel('Frequency', fontsize=12)
+
+
+plt.show()
+
+
+
+
