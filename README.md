@@ -1,5 +1,5 @@
 # Global_Food_Prices
-[global_food_prices_extended.csv](https://github.com/user-attachments/files/18936323/global_food_prices_extended.csv)
+(https://raw.githubusercontent.com/henamoako/global-food_prices/refs/heads/main/wfp_market_food_prices.csv)
 Analysis of the Dataset
 1.	Structure or Shape of the Data
 o	The dataset consists of 20 rows and 7 columns.
@@ -21,35 +21,32 @@ o	However, with only 20 records, it may not fully represent the global food pric
 o	Further validation against official price indices or larger datasets would be needed to confirm accuracy.
 
 Cleaning Summary:
-Data Validation: The dataset was checked for missing values, erroneous data, and extra characters. No issues were found.
+Missing Data: Filled missing values in numeric columns with the median of the respective column, while leaving categorical columns untouched.
+Erroneous Data: Removed currency symbols and commas from the mp_price column and converted it to a numerical type (float).
+Duplicates: Identified and removed duplicate rows to ensure the analysis was based on unique data.
+Data Types: Ensured that columns like mp_year were of the correct data type (integer).
+Final Verification: Displayed the first few rows of the cleaned data to confirm the successful application of these steps.
 
-Date Format Fixed: The date column was converted from a string format to a datetime format for consistency.
+import pandas as pd
+df = pd.read_csv("https://raw.githubusercontent.com/henamoako/global-food_prices/refs/heads/main/wfp_market_food_prices.csv")
 
-No Duplicate Rows: An inspection revealed that there were no duplicate rows in the original dataset.
-
-Data Integrity: All columns are correctly formatted and consistent, and no further cleaning was necessary.
-
-
-
-df = pd.read_csv("https://raw.githubusercontent.com/henamoako/Global_Food_Prices/main/global_food_prices_extended.csv")
 df.head()
 
-
-df['date'] = pd.to_datetime(df['date'], errors='coerce')
-
-
-plt.figure(figsize=(8, 5))
-sns.histplot(df['price'], bins=6, kde=True, color='blue')
-
-
-plt.title('Distribution of Food Prices', fontsize=14)
-plt.xlabel('Price', fontsize=12)
-plt.ylabel('Frequency', fontsize=12)
-
-
-
+"Distribution of mp_price"
+plt.subplot(2, 2, 2)
+df["mp_price"].hist()
+plt.xlabel("mp_price")
+plt.ylabel("Frequency")
+plt.title("Distribution of mp_price")
 plt.show()
 
+"Distribution of mp_year"
+plt.subplot(2, 2, 4)
+df["mp_year"].hist()
+plt.xlabel("mp_year")
+plt.ylabel("Frequency")
+plt.title("Distribution of mp_year")
+plt.show()
 
 Observation:
 Most prices fall within a common range. The highest bars represent the most frequent price values.
