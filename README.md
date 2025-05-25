@@ -54,3 +54,63 @@ Most prices fall within a common range. The highest bars represent the most freq
 The shape of the distribution is mostly balanced. This means there aren’t too many extremely high or low prices.
 
 No major outliers. We don’t see any unusually high or low prices that stand out too much.
+
+Milestone 7:
+X = df[['mp_year', 'mkt_name', 'adm0_name']]  
+y = df['mp_price']
+
+
+X = pd.get_dummies(X, drop_first=True)
+
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+
+linear_regressor = LinearRegression()
+linear_regressor.fit(X_train, y_train)
+
+
+y_pred = linear_regressor.predict(X_test)
+
+
+mse = mean_squared_error(y_test, y_pred)  
+r2 = r2_score(y_test, y_pred)  
+
+print(f'Mean Squared Error: {mse}')
+print(f'R-squared: {r2}')
+
+X2 = df[['mp_year', 'mkt_name']]  
+
+
+X2 = pd.get_dummies(X2, drop_first=True)
+
+
+X2_train, X2_test, y_train, y_test = train_test_split(X2, y, test_size=0.2, random_state=42)
+
+
+X2_train = scaler.fit_transform(X2_train)
+X2_test = scaler.transform(X2_test)
+
+
+linear_regressor.fit(X2_train, y_train)
+
+
+y_pred2 = linear_regressor.predict(X2_test)
+mse2 = mean_squared_error(y_test, y_pred2)
+r2_2 = r2_score(y_test, y_pred2)
+
+print(f'Mean Squared Error (Model 2): {mse2}')
+print(f'R-squared (Model 2): {r2_2}')
+
+Milestone 8:
+
