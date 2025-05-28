@@ -113,4 +113,64 @@ print(f'Mean Squared Error (Model 2): {mse2}')
 print(f'R-squared (Model 2): {r2_2}')
 
 Milestone 8:
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.metrics import mean_squared_error, r2_score
 
+
+
+X = df[['mp_year', 'mkt_name', 'adm0_name']]  
+y = df['mp_price']  
+
+
+X = pd.get_dummies(X, drop_first=True)
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+
+knn = KNeighborsRegressor(n_neighbors=5)
+knn.fit(X_train, y_train)
+
+
+y_pred_knn = knn.predict(X_test)
+
+
+mse_knn = mean_squared_error(y_test, y_pred_knn)
+r2_knn = r2_score(y_test, y_pred_knn)
+
+
+print(f'Mean Squared Error (KNN): {mse_knn}')
+print(f'R-squared (KNN): {r2_knn}')
+
+knn_5 = KNeighborsRegressor(n_neighbors=5)
+knn_5.fit(X_train, y_train)
+
+
+y_pred_knn_5 = knn_5.predict(X_test)
+mse_knn_5 = mean_squared_error(y_test, y_pred_knn_5)
+r2_knn_5 = r2_score(y_test, y_pred_knn_5)
+
+print(f'Mean Squared Error (KNN with k=5): {mse_knn_5}')
+print(f'R-squared (KNN with k=5): {r2_knn_5}')
+
+
+knn_10 = KNeighborsRegressor(n_neighbors=10, metric='manhattan')
+knn_10.fit(X_train, y_train)
+
+
+y_pred_knn_10 = knn_10.predict(X_test)
+mse_knn_10 = mean_squared_error(y_test, y_pred_knn_10)
+r2_knn_10 = r2_score(y_test, y_pred_knn_10)
+
+print(f'Mean Squared Error (KNN with k=10, Manhattan): {mse_knn_10}')
+print(f'R-squared (KNN with k=10, Manhattan): {r2_knn_10}')
+
+
+Milestone 9:
