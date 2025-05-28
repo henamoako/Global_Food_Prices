@@ -174,3 +174,32 @@ print(f'R-squared (KNN with k=10, Manhattan): {r2_knn_10}')
 
 
 Milestone 9:
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+X = df[['mp_year', 'mp_price']]  
+
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+pca_df = pd.DataFrame(data=X_pca, columns=['PC1', 'PC2'])
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='PC1', y='PC2', data=pca_df, alpha=0.7)
+plt.title('PCA of Market Data')
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.grid(True)
+plt.show()
+
+
+explained_variance = pca.explained_variance_ratio_
+print(f'Explained Variance Ratio: {explained_variance}')
